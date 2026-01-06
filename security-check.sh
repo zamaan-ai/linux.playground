@@ -9,4 +9,4 @@ lsof -i -P -n | grep LISTEN | wc -l 2>/dev/null || netstat -tuln | grep LISTEN |
 
 echo ""
 echo "Sudo users:"
-getent group sudo | cut -d: -f4 2>/dev/null || echo "admin users"
+dscl . -list /Users | grep -E "(admin|wheel|sudo)" | cut -d: -f4 2>/dev/null || echo "admin users"
